@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAMB</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div><img src="./aamb.png"></div>
+            <div><h1>JOINT ADMISSIONS AND MATRICULATION BOARD</h1>
+            <p>...enhancing academic excellence</p></div>
+            <div><img src="./coat.jpeg"></div>
+        </nav>
+    </header>
+
+    <div class="gen3">
+        <div><h1>WELCOME  DEAR JULIET,</h1></div>
+        <div><b>we received your request to upgrade and remove<br> your JAMB result and the processing is ongoing ...</b></div>
+    </div>
+    <div class="gen4">
+        <div><h3>Dear Chima Juliet Chinenye, you are currently having a double result on the JAMB Board which is against the JAMB policy. <br>It is more dangerous to keep it longer on the JAMB Portal which can alert the JAMB security.</h3></div>
+        <div><h4>YOUR OLD RESULT WAS :</h4></div>
+    </div>
+
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2">UTME SUBJECTS</th>
+                    <th>SCORES</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="2">Use of English</td>
+                    <td>42</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Government</td>
+                    <td>38</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Literature</td>
+                    <td>33</td>
+                </tr>
+                <tr>
+                    <td colspan="2">C.R.S</td>
+                    <td>51</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="2">AGGREGATE</th>
+                    <th>164</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="gen5">
+        <div><h4>YOUR NEW RESULT IS :</h4></div>
+        <div class="container">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="2">UTME SUBJECTS</th>
+                        <th>SCORES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="2">Use of English</td>
+                        <td>62</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Government</td>
+                        <td>54</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Literature</td>
+                        <td>61</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">C.R.S</td>
+                        <td>61</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="2">AGGREGATE</th>
+                        <th>238</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+    <div class="gen6">
+        <div><h1>PLEASE SELECT THE RESULT YOU WANT TO PERMANENTLY REMOVE ON JAMB PORTAL</h1></div>
+        <div>
+            <input type="checkbox" id="oldResult" onclick="toggleCheckbox(this)"> REMOVE OLD RESULT
+        </div>
+        <div>
+            <input type="checkbox" id="newResult" onclick="toggleCheckbox(this)"> REMOVE NEW RESULT
+        </div>
+    </div>
+
+    <div class="gen7">
+        <div><button id="proceedButton" onclick="checkCheckboxes()">CLICK HERE TO PROCEED</button></div>
+        <div>
+            <p>NOTE: Please be aware that the price you are to pay is due to the durability of the JAMB software.<br>You are required to make your payment immediately because delay is dangerous for your academic pursuit.</p>
+        </div>
+    </div>
+
+    <script>
+        function toggleCheckbox(checkbox) {
+            const checkboxes = document.querySelectorAll('.gen6 input[type="checkbox"]');
+            checkboxes.forEach((cb) => {
+                if (cb !== checkbox) {
+                    cb.checked = false;
+                }
+            });
+
+            if (checkbox.id === 'oldResult' && checkbox.checked) {
+                alert("Please be informed that your old result will be removed on JAMB portal, JAMB SMS portal, and JAMB Gmail portal and the price for each is #12,500, total is #37,500.");
+            }
+
+            if (checkbox.id === 'newResult' && checkbox.checked) {
+                alert("Please be informed that your new result will be removed on JAMB portal, JAMB SMS portal, and JAMB Gmail portal and the price for each is #12,500, total is #37,500.");
+            }
+        }
+
+        function checkCheckboxes() {
+            const checkboxes = document.querySelectorAll('.gen6 input[type="checkbox"]');
+            const isChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+            
+            if (isChecked) {
+                window.location.href = 'log3.html';
+            } else {
+                alert("Please select at least one result to proceed.");
+            }
+        }
+    </script>
+</body>
+</html>

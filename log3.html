@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAMB</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div><img src="./aamb.png"></div>
+            <div><h1>JOINT ADMISSIONS AND MATRICULATION BOARD</h1>
+            <p>...enhancing academic excellence</p></div>
+            <div><img src="./coat.jpeg"></div>
+        </nav>
+    </header>
+
+    <div class="gen8">
+        <div><b>A code will be sent to you after your payment in order to complete the processing.</b></div>
+        <div><p>Please input your given code below </p></div>
+        <div><input type="password" id="codeInput" placeholder="input your code here"></div>
+        <div><button id="verifyButton">CLICK HERE TO CHECK YOUR RESULT</button></div>
+        <div id="message"></div>
+        <div><h4>NOTE : Please input your code correctly.<br>contact your admin to request for your code after your payment.<br>Your result will be ready after your inputed your code.</h4></div>
+    </div>
+
+    <script>
+        document.getElementById('verifyButton').addEventListener('click', function() {
+            const inputCode = document.getElementById('codeInput').value;
+            const correctCode = '2024037CHA';
+            const messageDiv = document.getElementById('message');
+
+            if (inputCode === correctCode) {
+                messageDiv.textContent = 'Code verified successfully!';
+                messageDiv.style.color = 'green';
+            } else {
+                messageDiv.textContent = 'Invalid code. Please try again.';
+                messageDiv.style.color = 'red';
+            }
+        });
+    </script>
+</body>
+</html>

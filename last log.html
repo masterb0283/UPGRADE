@@ -23,7 +23,7 @@
     <div class="gen9">
         <div><h1>Your request is being processed ...<br>hold on while we await Jamb approval.</h1></div>
         <div class="progress-container">
-            <progress id="progressBar" value="10" max="100"></progress>
+            <progress id="progressBar" value="10" max="50"></progress>
             <div class="percentage" id="percentageText">10%</div>
         </div>
     </div>
@@ -39,7 +39,7 @@
         const duration = 6 * 60 * 60 * 1000; // 6 hours in milliseconds
         const interval = 100; // Update every 100 milliseconds
         const startingValue = 10; // Starting value for the progress
-        const targetValue = 100; // Target value for the progress
+        const targetValue = 50; // Target value for the progress
         const totalIncrement = targetValue - startingValue; // Total increment to reach 100%
         const increment = (interval / duration) * totalIncrement; // Percentage increment
 

@@ -9,12 +9,71 @@
     <header>
         <nav>
             <div><img src="./aamb.png"></div>
-            <div><h1>JOINT ADMISSIONS <br>AND<br> MATRICULATION BOARD</h1>
-            <p>...enhancing academic excellence</p></div>
+            <div>
+                <h1>JOINT ADMISSIONS <br>AND<br> MATRICULATION BOARD</h1>
+                <p>...enhancing academic excellence</p>
+            </div>
             <div><img src="./coat.jpeg"></div>
         </nav>
     </header>
+    <div class="head1">
+        <div><h1>CONGRATULATION<br> DEAR CANDIDATE,</h1></div>
+    </div>
 
-    
+    <div class="gen9">
+        <div><h1>Your request is being processed ...<br>hold on while we await Jamb approval.</h1></div>
+        <div class="progress-container">
+            <progress id="progressBar" value="10" max="100"></progress>
+            <div class="percentage" id="percentageText">10%</div>
+        </div>
+    </div>
+
+    <div class="gen10" id="gen10">
+        <div><h2>please check back again</h2></div>
+    </div>
+
+    <script>
+        const progressBar = document.getElementById('progressBar');
+        const percentageText = document.getElementById('percentageText');
+        const gen10Div = document.getElementById('gen10'); // Added this line to define gen10Div
+        const duration = 6 * 60 * 60 * 1000; // 6 hours in milliseconds
+        const interval = 100; // Update every 100 milliseconds
+        const startingValue = 10; // Starting value for the progress
+        const targetValue = 100; // Target value for the progress
+        const totalIncrement = targetValue - startingValue; // Total increment to reach 100%
+        const increment = (interval / duration) * totalIncrement; // Percentage increment
+
+        // Retrieve the saved progress value from localStorage
+        let currentValue = parseFloat(localStorage.getItem('currentProgress')) || startingValue;
+
+        // Set the progress bar value and percentage text
+        progressBar.value = currentValue;
+        percentageText.textContent = currentValue + '%';
+
+        const loadingInterval = setInterval(() => {
+            currentValue += increment;
+            if (currentValue > targetValue) currentValue = targetValue; // Ensure it does not exceed 100%
+
+            progressBar.value = currentValue;
+            percentageText.textContent = Math.min(currentValue, targetValue).toFixed(0) + '%';
+
+            // Save the current progress value in localStorage
+            localStorage.setItem('currentProgress', currentValue);
+
+            if (currentValue >= targetValue) {
+                clearInterval(loadingInterval);
+                progressBar.value = targetValue; // Ensure it ends at 100%
+                percentageText.textContent = targetValue + '%'; // Ensure it shows 100%
+                localStorage.removeItem('currentProgress'); // Clear the stored progress
+            }
+        }, interval);
+
+        // Add click event listener to the gen10 div
+        gen10Div.addEventListener('click', () => {
+            alert('please hold on while we wait for Jamb to accept or decline the result');
+        });
+
+    </script>
+
 </body>
 </html>

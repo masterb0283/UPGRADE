@@ -256,3 +256,95 @@ padding-top: 20px;
 .gen8 h4{
     color: rgb(19, 10, 10);
 }
+
+.head1{
+    justify-content: center;
+    color: #d1e7dd;
+    margin: 50px;
+    margin-left: 30%;
+}
+
+.gen9{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color:white;
+    width: 70%;
+    color: red;
+    margin-top: 100PX;
+    margin-left: 13%;
+    border-radius: 10px;
+}
+.gen9 h1{
+    padding: 20px;
+    padding-left: 25px;
+    padding-bottom: 20px;
+    
+}
+
+
+.progress-container {
+    position: relative;
+    width: 100%; /* Adjust as needed */
+    height: 20px; /* Adjust as needed */
+}
+
+progress {
+    width: 100%;
+    height: 100%;
+}
+
+progress::-webkit-progress-bar {
+    background-color: #f3f3f3; /* Background color of the progress bar */
+}
+
+progress::-webkit-progress-value {
+    background-color: green; /* Color of the progress value */
+}
+
+progress::-moz-progress-bar {
+    background-color: green; /* Color of the progress value */
+}
+
+progress {
+    background-color: #f3f3f3; /* Background color */
+    border-radius: 10px; /* Optional: border radius */
+    overflow: hidden; /* Prevent overflow */
+}
+
+.percentage {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: black; /* Change color as needed */
+    font-weight: bold; /* Change font weight as needed */
+}
+
+
+/* Keyframe for moving the text */
+@keyframes moveTextGen10 {
+    0% {
+        transform: translateX(0); /* Start position */
+    }
+    50% {
+        transform: translateX(30px); /* Move right */
+    }
+    100% {
+        transform: translateX(0); /* Return to start */
+    }
+}
+
+/* Apply the animation to gen10 h2 */
+.gen10 h2 {
+    margin: 40px;
+    font-size: 17px; /* Added 'px' for proper font size */
+    background-color: black;
+    color: white;
+    padding-left: 30px;
+    border-radius: 6px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    text-transform: capitalize;
+    animation: moveTextGen10 3s ease-in-out infinite; /* Animation properties */
+}

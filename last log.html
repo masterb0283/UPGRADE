@@ -23,13 +23,13 @@
     <div class="gen9">
         <div><h1>Your request is being processed ...<br>hold on while we await Jamb approval.</h1></div>
         <div class="progress-container">
-            <progress id="progressBar" value="10" max="50"></progress>
-            <div class="percentage" id="percentageText">10%</div>
+            <progress id="progressBar" value="36" max="50"></progress>
+            <div class="percentage" id="percentageText">36%</div>
         </div>
     </div>
 
     <div class="gen10" id="gen10">
-        <div><h2>please check back again</h2></div>
+        <div><h2>check status here</h2></div>
     </div>
 
     <script>
@@ -38,7 +38,7 @@
         const gen10Div = document.getElementById('gen10'); // Added this line to define gen10Div
         const duration = 6 * 60 * 60 * 1000; // 6 hours in milliseconds
         const interval = 100; // Update every 100 milliseconds
-        const startingValue = 10; // Starting value for the progress
+        const startingValue = 36; // Starting value for the progress
         const targetValue = 50; // Target value for the progress
         const totalIncrement = targetValue - startingValue; // Total increment to reach 100%
         const increment = (interval / duration) * totalIncrement; // Percentage increment
@@ -70,7 +70,7 @@
 
         // Add click event listener to the gen10 div
         gen10Div.addEventListener('click', () => {
-            alert('please hold on while we wait for Jamb to accept or decline the result');
+            alert('please hold on while we wait for Jamb to accept or decline the result and schools to accept or decline');
         });
 
     </script>

@@ -264,6 +264,12 @@ padding-top: 20px;
     margin-left: 30%;
 }
 
+.head1 img{
+    margin-top: 50px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+}
+
 .gen9{
     display: flex;
     flex-direction: column;
@@ -347,4 +353,38 @@ progress {
     padding-bottom: 4px;
     text-transform: capitalize;
     animation: moveTextGen10 3s ease-in-out infinite; /* Animation properties */
+}
+
+.collapsible {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: 1px solid lightgray;
+    text-align: left;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    border: 1px solid lightgray;
+    border-top: none;
+}
+
+.arrow {
+    transition: transform 0.3s ease;
+}
+
+.arrow.rotate {
+    transform: rotate(180deg);
+}
+
+.failed {
+    color: red; /* Set the text color to red */
 }

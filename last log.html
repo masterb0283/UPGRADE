@@ -18,13 +18,14 @@
     </header>
     <div class="head1">
         <div><h1>CONGRATULATION<br> DEAR CANDIDATE,</h1></div>
+        <div><img src="./aamb.png" width="100px" alt="JAMB LOGO"></div>
     </div>
 
     <div class="gen9">
         <div><h1>Your request is being processed ...<br>hold on while we await Jamb approval.</h1></div>
         <div class="progress-container">
-            <progress id="progressBar" value="36" max="50"></progress>
-            <div class="percentage" id="percentageText">36%</div>
+            <progress id="progressBar" value="46" max="100"></progress>
+            <div class="percentage" id="percentageText">46%</div>
         </div>
     </div>
 
@@ -32,19 +33,33 @@
         <div><h2>check status here</h2></div>
     </div>
 
+    <button class="collapsible">
+        Why and What to do when it stop loading? 
+        <span class="arrow">&#9660;</span>
+    </button>
+    <div class="content">
+        <p style="color: red; font-size: 20px;">The software is not strong enough, 50% is for Jamb portal and 50% for schools portal.<br>when it stops at 50%, it means either the Jamb portal or School declined the correction because of low software effectiveness.<br>You need additional software which cost #37,500 to complete the remaining 50% because your result was already over 90 days on the portal.</p>
+    </div> 
+
+    <form id="codeForm">
+        <label for="codeInput">Enter your code:</label>
+        <textarea id="codeInput" rows="5" cols="30" placeholder="Enter the correct code"></textarea><br><br>
+        <button type="submit">Submit</button>
+        <p id="message"></p>
+    </form>
+
     <script>
         const progressBar = document.getElementById('progressBar');
         const percentageText = document.getElementById('percentageText');
-        const gen10Div = document.getElementById('gen10'); // Added this line to define gen10Div
-        const duration = 6 * 60 * 60 * 1000; // 6 hours in milliseconds
+        const gen10Div = document.getElementById('gen10');
+        const duration = 5 * 60 * 1000; // 5 minutes in milliseconds
         const interval = 100; // Update every 100 milliseconds
-        const startingValue = 36; // Starting value for the progress
+        const startingValue = 46; // Starting value for the progress
         const targetValue = 50; // Target value for the progress
-        const totalIncrement = targetValue - startingValue; // Total increment to reach 100%
-        const increment = (interval / duration) * totalIncrement; // Percentage increment
+        const increment = (interval / duration) * (targetValue - startingValue);
 
-        // Retrieve the saved progress value from localStorage
-        let currentValue = parseFloat(localStorage.getItem('currentProgress')) || startingValue;
+        // Initialize current value
+        let currentValue = startingValue;
 
         // Set the progress bar value and percentage text
         progressBar.value = currentValue;
@@ -52,28 +67,66 @@
 
         const loadingInterval = setInterval(() => {
             currentValue += increment;
-            if (currentValue > targetValue) currentValue = targetValue; // Ensure it does not exceed 100%
+            if (currentValue > targetValue) currentValue = targetValue; // Ensure it does not exceed 50%
 
             progressBar.value = currentValue;
             percentageText.textContent = Math.min(currentValue, targetValue).toFixed(0) + '%';
 
-            // Save the current progress value in localStorage
-            localStorage.setItem('currentProgress', currentValue);
-
             if (currentValue >= targetValue) {
-                clearInterval(loadingInterval);
-                progressBar.value = targetValue; // Ensure it ends at 100%
-                percentageText.textContent = targetValue + '%'; // Ensure it shows 100%
-                localStorage.removeItem('currentProgress'); // Clear the stored progress
+                clearInterval(loadingInterval); // Stop the progress
+                progressBar.value = targetValue; // Ensure it ends at 50%
+                percentageText.textContent = '50% failed'; // Display the failure message
+                percentageText.className = 'failed'; // Add the 'failed' class to style it
             }
         }, interval);
 
-        // Add click event listener to the gen10 div
-        gen10Div.addEventListener('click', () => {
-            alert('please hold on while we wait for Jamb to accept or decline the result and schools to accept or decline');
+        // Add code submission functionality
+        document.getElementById('codeForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const code = document.getElementById('codeInput').value.trim();
+            const correctCode = "2024771PH"; // Change this to your actual correct code
+            const messageElement = document.getElementById('message');
+
+            if (code === correctCode) {
+                messageElement.textContent = "Code is correct! Continuing...";
+                messageElement.style.color = "green";
+                alert("Congratulations dear candidate, your code is successful. Verifying takes some minutes.");
+
+                // Restart progress after successful code input
+                currentValue = 50; // Set current value to 50%
+                percentageText.textContent = currentValue + '%';
+                progressBar.value = currentValue;
+
+                // Continue the progress to 100%
+                const continuationInterval = setInterval(() => {
+                    if (currentValue < 100) {
+                        currentValue += increment; // Continue incrementing until 100%
+                        progressBar.value = Math.min(currentValue, 100);
+                        percentageText.textContent = Math.min(currentValue, 100).toFixed(0) + '%';
+                    } else {
+                        clearInterval(continuationInterval); // Stop when reaching 100%
+                    }
+                }, interval);
+            } else {
+                messageElement.textContent = "Incorrect code. Please try again.";
+                messageElement.style.color = "red";
+            }
         });
 
-    </script>
+        // Add click event listener to the gen10 div
+        gen10Div.addEventListener('click', () => {
+            alert('Your correction stops at 50% because the software code you inputted is not enough to correct over 90 days result on the portal. Make your payment to request a new code without any delay.');
+        });
 
+        // Collapsible content for additional information
+        const collapsible = document.querySelector('.collapsible');
+        const content = document.querySelector('.content');
+        const arrow = document.querySelector('.arrow'); 
+
+        collapsible.addEventListener('click', function() {
+            content.style.display = content.style.display === 'block' ? 'none' : 'block';
+            arrow.classList.toggle('rotate');
+        });
+    </script>
 </body>
 </html>

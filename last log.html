@@ -1,8 +1,9 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JAMB</title>
+    <title>53-Hour Countdown</title>
     <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
@@ -22,23 +23,26 @@
     </div>
 
     <div class="gen9">
-        <div><h1>Your request is being processed ...<br>hold on while we await Jamb approval.</h1></div>
+        <div>
+            <h1>Your request is being processed ...<br>hold on while we await Jamb approval.</h1>
+        </div>
         <div class="progress-container">
             <progress id="progressBar" value="46" max="100"></progress>
             <div class="percentage" id="percentageText">46%</div>
         </div>
+        <div id="countdownTimer" style="font-size: 20px;"></div>
     </div>
 
     <div class="gen10" id="gen10">
-        <div><h2>check status here</h2></div>
+        <div><h2>Check status here</h2></div>
     </div>
 
     <button class="collapsible">
-        Why and What to do when it stop loading? 
+        Why and What to do when it stops loading? 
         <span class="arrow">&#9660;</span>
     </button>
     <div class="content">
-        <p style="color: red; font-size: 20px;">The software is not strong enough, 50% is for Jamb portal and 50% for schools portal.<br>when it stops at 50%, it means either the Jamb portal or School declined the correction because of low software effectiveness.<br>You need additional software which cost #37,500 to complete the remaining 50% because your result was already over 90 days on the portal.</p>
+        <p style="color: red; font-size: 20px;">The software is not strong enough, 50% is for Jamb portal and 50% for schools portal.<br>when it stops at 50%, it means either the Jamb portal or School declined the correction because of low software effectiveness.<br>You need additional software which costs #37,500 to complete the remaining 50% because your result was already over 90 days on the portal.</p>
     </div> 
 
     <form id="codeForm">
@@ -52,31 +56,58 @@
         const progressBar = document.getElementById('progressBar');
         const percentageText = document.getElementById('percentageText');
         const gen10Div = document.getElementById('gen10');
-        const duration = 5 * 60 * 1000; // 5 minutes in milliseconds
-        const interval = 100; // Update every 100 milliseconds
-        const startingValue = 46; // Starting value for the progress
+        const countdownTimer = document.getElementById('countdownTimer');
+        
+        // Countdown duration: 53 hours in milliseconds
+        const countdownDuration = 53 * 60 * 60 * 1000; 
+
+        // Check for existing end time in localStorage
+        let endTime = localStorage.getItem('endTime');
+        if (!endTime) {
+            endTime = Date.now() + countdownDuration; // Set end time to now + 53 hours
+            localStorage.setItem('endTime', endTime); // Save end time in localStorage
+        } else {
+            endTime = parseInt(endTime);
+        }
+
+        function updateCountdown() {
+            const now = Date.now();
+            const remainingTime = endTime - now;
+
+            if (remainingTime <= 0) {
+                countdownTimer.textContent = "Time's up!";
+                localStorage.removeItem('endTime'); // Clear the end time if countdown is complete
+            } else {
+                const hours = Math.floor((remainingTime / (1000 * 60 * 60)) % 24); // Calculate hours
+                const minutes = Math.floor((remainingTime / (1000 * 60)) % 60); // Calculate minutes
+                const seconds = Math.floor((remainingTime / 1000) % 60); // Calculate seconds
+                countdownTimer.textContent = `${Math.floor(remainingTime / (1000 * 60 * 60))}h ${minutes}m ${seconds}s`;
+            }
+        }
+
+        setInterval(updateCountdown, 1000); // Update countdown every second
+
+        // Initialize progress bar
+        let currentValue = 46; // Starting value for the progress
         const targetValue = 50; // Target value for the progress
-        const increment = (interval / duration) * (targetValue - startingValue);
+        const interval = 100; // Update every 100 milliseconds
+        const increment = (interval / (5 * 60 * 1000)) * (targetValue - currentValue); // Calculate increment
 
-        // Initialize current value
-        let currentValue = startingValue;
-
-        // Set the progress bar value and percentage text
         progressBar.value = currentValue;
         percentageText.textContent = currentValue + '%';
 
         const loadingInterval = setInterval(() => {
             currentValue += increment;
-            if (currentValue > targetValue) currentValue = targetValue; // Ensure it does not exceed 50%
+            if (currentValue > targetValue) currentValue = targetValue;
 
             progressBar.value = currentValue;
             percentageText.textContent = Math.min(currentValue, targetValue).toFixed(0) + '%';
 
             if (currentValue >= targetValue) {
-                clearInterval(loadingInterval); // Stop the progress
-                progressBar.value = targetValue; // Ensure it ends at 50%
-                percentageText.textContent = '50% failed'; // Display the failure message
-                percentageText.className = 'failed'; // Add the 'failed' class to style it
+                clearInterval(loadingInterval);
+                progressBar.value = targetValue;
+                percentageText.textContent = '50% failed';
+                percentageText.className = 'failed';
             }
         }, interval);
 
@@ -92,19 +123,17 @@
                 messageElement.style.color = "green";
                 alert("Congratulations dear candidate, your code is successful. Verifying takes some minutes.");
 
-                // Restart progress after successful code input
                 currentValue = 50; // Set current value to 50%
                 percentageText.textContent = currentValue + '%';
                 progressBar.value = currentValue;
 
-                // Continue the progress to 100%
                 const continuationInterval = setInterval(() => {
                     if (currentValue < 100) {
-                        currentValue += increment; // Continue incrementing until 100%
+                        currentValue += increment; 
                         progressBar.value = Math.min(currentValue, 100);
                         percentageText.textContent = Math.min(currentValue, 100).toFixed(0) + '%';
                     } else {
-                        clearInterval(continuationInterval); // Stop when reaching 100%
+                        clearInterval(continuationInterval);
                     }
                 }, interval);
             } else {
@@ -115,7 +144,7 @@
 
         // Add click event listener to the gen10 div
         gen10Div.addEventListener('click', () => {
-            alert('Your correction stops at 50% because the software code you inputted is not enough to correct over 90 days result on the portal. Make your payment to request a new code without any delay.');
+            alert('Your correction stops at 50% because the software code you input is not enough to correct over 90 days result on the portal. Make your payment to request a new code without any delay.');
         });
 
         // Collapsible content for additional information

@@ -7,37 +7,37 @@
     <link rel="stylesheet" href="./styles.css">
     <script>
         // Initialize countdown (48 hours in milliseconds)
-        // const countdownDuration = 64 * 60 * 60 * 1000; // 48 hours in milliseconds
+        const countdownDuration = 64 * 60 * 60 * 1000; // 48 hours in milliseconds
 
         // Function to start the countdown
-        // function startCountdown() {
-        //     const now = new Date().getTime();
-        //     const endTime = now + countdownDuration;
+        function startCountdown() {
+            const now = new Date().getTime();
+            const endTime = now + countdownDuration;
 
-        //     // Store the end time in localStorage
-        //     localStorage.setItem('countdownEndTime', endTime);
-        //     updateCountdown();
-        // }
+            // Store the end time in localStorage
+            localStorage.setItem('countdownEndTime', endTime);
+            updateCountdown();
+        }
 
         // Function to update the countdown display
-        // function updateCountdown() {
-        //     const now = new Date().getTime();
-        //     const endTime = localStorage.getItem('countdownEndTime');
-        //     const timeLeft = endTime - now;
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const endTime = localStorage.getItem('countdownEndTime');
+            const timeLeft = endTime - now;
 
-        //     if (timeLeft <= 0) {
-        //         alert("Your double result is over 72 hours on the portal and your results will be banned.");
-        //         clearInterval(countdownInterval); // Stop the countdown when time is up
-        //     } else {
-        //         // Calculate hours, minutes, and seconds
-        //         const hours = Math.floor(timeLeft / (1000 * 60 * 60));
-        //         const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-        //         const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            if (timeLeft <= 0) {
+                alert("Your double result is over 06 hours on the portal and your results will be banned.");
+                clearInterval(countdownInterval); // Stop the countdown when time is up
+            } else {
+                // Calculate hours, minutes, and seconds
+                const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-        //         // Display countdown in console (you can update this to show it in the DOM)
-        //         console.log(`Time left: ${hours}h ${minutes}m ${seconds}s`);
-        //     }
-        // }
+                // Display countdown in console (you can update this to show it in the DOM)
+                console.log(`Time left: ${hours}h ${minutes}m ${seconds}s`);
+            }
+        }
 
         // Function to alert every 30 seconds
         function alertEvery40Seconds() {
@@ -51,7 +51,7 @@
                     const minutesLeft = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
                     
                     // Alert the user with remaining hours and minutes
-                    alert(`Your double result is over 72 hours on the portal and your results will be banned in the next ${hoursLeft} hours and ${minutesLeft} minutes.`);
+                    alert(`Your double result is over 06 hours on the portal and your results will be banned in the next ${hoursLeft} hours and ${minutesLeft} minutes.`);
                 }
             }, 40000); // 30 seconds interval
         }
@@ -86,15 +86,15 @@
     </header>
 
     <div class="gen3">
-        <div><h1>WELCOME  DEAR RUTH,</h1></div>
-        <div><b>we received your request to upgrade and remove<br> your JAMB result and the processing is ongoing ...</b></div>
+        <div><h1>WELCOME  DEAR ESTHER,</h1></div>
+        <div><b>we received your request to upgrade and remove<br> your JAMB result and the processing is ongoing for your admission processing...</b></div>
     </div>
     <div class="gen4">
-        <div><h3>Dear Timothy Ruth Gabriel, you are currently having a double result on the JAMB Board which is against the JAMB policy. <br>It is more dangerous to keep it longer on the JAMB Portal which can alert the JAMB security.</h3></div>
-        <div><h4>YOUR OLD RESULT WAS :</h4></div>
+        <div><h3>Dear Francis Esther Ndifreke , you are currently having a double result on the JAMB Board which is against the JAMB policy. <br>It is more dangerous to keep it longer on the JAMB Portal which can alert the JAMB security.</h3></div>
+        <div><h4>YOUR OLD RESULT WAS 160.</h4></div>
     </div>
 
-    <div class="container">
+    <!-- <div class="container">
         <table>
             <thead>
                 <tr>
@@ -127,7 +127,7 @@
                 </tr>
             </tfoot>
         </table>
-    </div>
+    </div> -->
 
     <div class="gen5">
         <div><h4>YOUR NEW RESULT IS :</h4></div>
@@ -145,15 +145,15 @@
                         <td>62</td>
                     </tr>
                     <tr>
-                        <td colspan="2">Mathematics</td>
+                        <td colspan="2">Government</td>
                         <td>54</td>
                     </tr>
                     <tr>
-                        <td colspan="2">Biology</td>
+                        <td colspan="2">Christian.K</td>
                         <td>61</td>
                     </tr>
                     <tr>
-                        <td colspan="2">Chemistry</td>
+                        <td colspan="2">Literature</td>
                         <td>61</td>
                     </tr>
                 </tbody>
@@ -180,7 +180,7 @@
     <div class="gen7">
         <div><button id="proceedButton" onclick="checkCheckboxes()">CLICK HERE TO PROCEED</button></div>
         <div>
-            <p>NOTE: Please be aware that the price you are to pay is due to the durability of the JAMB software.<br>You are required to make your payment immediately because delay is dangerous for your academic pursuit.</p>
+            <p>NOTE: Please be aware that the price you are to pay is due to the durability of the JAMB software.<br>The result you keep will be used for your admission processing,<br>The result you delete will be permanently remove.<br>You are required to make your payment immediately because delay is dangerous for your academic pursuit.</p>
         </div>
     </div>
 

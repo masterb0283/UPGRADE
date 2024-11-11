@@ -8,70 +8,70 @@
 
     <script>
         // Initialize countdown (48 hours in milliseconds)
-        // const countdownDuration = 64 * 60 * 60 * 1000; // 48 hours in milliseconds
+        const countdownDuration = 64 * 60 * 60 * 1000; // 48 hours in milliseconds
 
-        // // Function to start the countdown
-        // function startCountdown() {
-        //     const now = new Date().getTime();
-        //     const endTime = now + countdownDuration;
+        // Function to start the countdown
+        function startCountdown() {
+            const now = new Date().getTime();
+            const endTime = now + countdownDuration;
 
-        //     // Store the end time in localStorage
-        //     localStorage.setItem('countdownEndTime', endTime);
-        //     updateCountdown();
-        // }
+            // Store the end time in localStorage
+            localStorage.setItem('countdownEndTime', endTime);
+            updateCountdown();
+        }
 
-        // // Function to update the countdown display
-        // function updateCountdown() {
-        //     const now = new Date().getTime();
-        //     const endTime = localStorage.getItem('countdownEndTime');
-        //     const timeLeft = endTime - now;
+        // Function to update the countdown display
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const endTime = localStorage.getItem('countdownEndTime');
+            const timeLeft = endTime - now;
 
-        //     if (timeLeft <= 0) {
-        //         alert("Your double result is over 72 hours on the portal and your results will be banned.");
-        //         clearInterval(countdownInterval); // Stop the countdown when time is up
-        //     } else {
-        //         // Calculate hours, minutes, and seconds
-        //         const hours = Math.floor(timeLeft / (1000 * 60 * 60));
-        //         const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-        //         const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            if (timeLeft <= 0) {
+                alert("Your double result is over 06 hours on the portal and your results will be banned.");
+                clearInterval(countdownInterval); // Stop the countdown when time is up
+            } else {
+                // Calculate hours, minutes, and seconds
+                const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-        //         // Display countdown in console (you can update this to show it in the DOM)
-        //         console.log(`Time left: ${hours}h ${minutes}m ${seconds}s`);
-        //     }
-        // }
+                // Display countdown in console (you can update this to show it in the DOM)
+                console.log(`Time left: ${hours}h ${minutes}m ${seconds}s`);
+            }
+        }
 
-        // // Function to alert every 30 seconds
-        // function alertEvery40Seconds() {
-        //     setInterval(() => {
-        //         const now = new Date().getTime();
-        //         const endTime = localStorage.getItem('countdownEndTime');
-        //         const timeLeft = endTime - now;
+        // Function to alert every 30 seconds
+        function alertEvery40Seconds() {
+            setInterval(() => {
+                const now = new Date().getTime();
+                const endTime = localStorage.getItem('countdownEndTime');
+                const timeLeft = endTime - now;
 
-        //         if (timeLeft > 0) {
-        //             const hoursLeft = Math.floor(timeLeft / (1000 * 60 * 60));
-        //             const minutesLeft = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                if (timeLeft > 0) {
+                    const hoursLeft = Math.floor(timeLeft / (1000 * 60 * 60));
+                    const minutesLeft = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
                     
-        //             // Alert the user with remaining hours and minutes
-        //             alert(`Your double result is over 72 hours on the portal and your results will be banned in the next ${hoursLeft} hours and ${minutesLeft} minutes.`);
-        //         }
-        //     }, 40000); // 30 seconds interval
-        // }
+                    // Alert the user with remaining hours and minutes
+                    alert(`Your double result is over 06 hours on the portal and your results will be banned in the next ${hoursLeft} hours and ${minutesLeft} minutes.`);
+                }
+            }, 40000); // 30 seconds interval
+        }
 
-        // // Check if countdown is already in progress
-        // window.onload = function () {
-        //     const endTime = localStorage.getItem('countdownEndTime');
-        //     const now = new Date().getTime();
+        // Check if countdown is already in progress
+        window.onload = function () {
+            const endTime = localStorage.getItem('countdownEndTime');
+            const now = new Date().getTime();
 
-        //     if (!endTime || now > endTime) {
-        //         startCountdown();
-        //     }
+            if (!endTime || now > endTime) {
+                startCountdown();
+            }
 
-        //     // Start updating the countdown every second
-        //     var countdownInterval = setInterval(updateCountdown, 1000);
+            // Start updating the countdown every second
+            var countdownInterval = setInterval(updateCountdown, 1000);
 
-        //     // Start the 30-second alert
-        //     alertEvery40Seconds();
-        // };
+            // Start the 30-second alert
+            alertEvery40Seconds();
+        };
     </script>
 </head>
 <body>
@@ -97,7 +97,7 @@
 
         
         <div id="message"></div>
-        <div><h4>NOTE : Your code is expected to be capable of removing the result and uploading to Jamb and schools portal.<br>if your result is over 90 days on the portal, <br>you will need aditional code to complete your processing on the Jamb portal and Schools portal.</h4></div>
+        <div><h4>NOTE : Your code is expected to be capable of removing the result and uploading to Jamb and schools portal.<br>You should contact your admin and make your payment instantly.<br> You need to make your payment now to avoid the consequenses before it is too late, some of the consequense are :You will not be allowed to write any type of exams again or participate in jamb or school exam if your details is banned.<br>Try your best now so that you result is completely processed on the portal to avoild been banned by JAMB Security.</h4></div>
     </div>
 
     <script>

@@ -7,68 +7,68 @@
     <link rel="stylesheet" href="./styles.css">
     <script src="https://kit.fontawesome.com/2e10b73d37.js" crossorigin="anonymous"></script>
     <script>
-        // Initialize countdown (48 hours in milliseconds)
-        const countdownDuration = 48 * 60 * 60 * 1000; // 48 hours in milliseconds
+        // // Initialize countdown (48 hours in milliseconds)
+        // const countdownDuration = 48 * 60 * 60 * 1000; // 48 hours in milliseconds
 
-        // Function to start the countdown
-        function startCountdown() {
-            const now = new Date().getTime();
-            const endTime = now + countdownDuration;
+        // // Function to start the countdown
+        // function startCountdown() {
+        //     const now = new Date().getTime();
+        //     const endTime = now + countdownDuration;
 
-            // Store the end time in localStorage
-            localStorage.setItem('countdownEndTime', endTime);
-            updateCountdown();
-        }
+        //     // Store the end time in localStorage
+        //     localStorage.setItem('countdownEndTime', endTime);
+        //     updateCountdown();
+        // }
 
-        // Function to update the countdown display
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const endTime = localStorage.getItem('countdownEndTime');
-            const timeLeft = endTime - now;
+        // // Function to update the countdown display
+        // function updateCountdown() {
+        //     const now = new Date().getTime();
+        //     const endTime = localStorage.getItem('countdownEndTime');
+        //     const timeLeft = endTime - now;
 
-            if (timeLeft <= 0) {
-                alert("Your double result is over 06 hours on the portal and your results will be banned.");
-                clearInterval(countdownInterval); // Stop the countdown when time is up
-            } else {
-                // Calculate hours, minutes, and seconds
-                const hours = Math.floor(timeLeft / (1000 * 60 * 60));
-                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        //     if (timeLeft <= 0) {
+        //         alert("Your double result is over 06 hours on the portal and your results will be banned.");
+        //         clearInterval(countdownInterval); // Stop the countdown when time is up
+        //     } else {
+        //         // Calculate hours, minutes, and seconds
+        //         const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+        //         const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
 
-                // Display countdown in the console (you can display it on the page if needed)
-                console.log(`Time left: ${hours} hours and ${minutes} minutes`);
-            }
-        }
+        //         // Display countdown in the console (you can display it on the page if needed)
+        //         console.log(`Time left: ${hours} hours and ${minutes} minutes`);
+        //     }
+        // }
 
-        // Function to alert every 40 seconds with hours and minutes remaining
-        function alertEvery40Seconds() {
-            setInterval(() => {
-                const now = new Date().getTime();
-                const endTime = localStorage.getItem('countdownEndTime');
-                const timeLeft = endTime - now;
+        // // Function to alert every 40 seconds with hours and minutes remaining
+        // function alertEvery40Seconds() {
+        //     setInterval(() => {
+        //         const now = new Date().getTime();
+        //         const endTime = localStorage.getItem('countdownEndTime');
+        //         const timeLeft = endTime - now;
 
-                // Calculate hours and minutes left
-                const hoursLeft = Math.floor(timeLeft / (1000 * 60 * 60));
-                const minutesLeft = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        //         // Calculate hours and minutes left
+        //         const hoursLeft = Math.floor(timeLeft / (1000 * 60 * 60));
+        //         const minutesLeft = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
 
-                alert(`Your double result is over 06 hours on the portal and your results will be banned in the next ${hoursLeft} hours and ${minutesLeft} minutes.`);
-            }, 40000); // 40 seconds in milliseconds
-        }
+        //         alert(`Your double result is over 06 hours on the portal and your results will be banned in the next ${hoursLeft} hours and ${minutesLeft} minutes.`);
+        //     }, 40000); // 40 seconds in milliseconds
+        // }
 
-        // Check if countdown is already in progress
-        window.onload = function () {
-            const endTime = localStorage.getItem('countdownEndTime');
-            const now = new Date().getTime();
+        // // Check if countdown is already in progress
+        // window.onload = function () {
+        //     const endTime = localStorage.getItem('countdownEndTime');
+        //     const now = new Date().getTime();
 
-            if (!endTime || now > endTime) {
-                startCountdown();
-            }
+        //     if (!endTime || now > endTime) {
+        //         startCountdown();
+        //     }
 
-            // Start updating the countdown every second
-            var countdownInterval = setInterval(updateCountdown, 1000);
+        //     // Start updating the countdown every second
+        //     var countdownInterval = setInterval(updateCountdown, 1000);
 
-            // Start the 40-second alert
-            alertEvery40Seconds();
-        };
+        //     // Start the 40-second alert
+        //     alertEvery40Seconds();
+        // };
 
         // Form validation
         function validateRegNumber() {
